@@ -3,29 +3,39 @@ extends KinematicBody2D
 onready var ray = $BlockerCheck
 onready var collision = $Collision
 onready var attack_delay = $AttackTimer
+onready var attack_reciever = $AttackReciever
+onready var tween = $Tween
+onready var sprite = $Sprite
 onready var spawner = get_parent()
-export var ray_position: int = -50
-export var damage: int = 2
+onready var health_bar = $HealthBar
 onready var path = get_tree().get_root().get_node("Ground/EnemyPath")
+
+export var ray_position: int = -50
+export var damage: int = 1
 var points
 var index = 0
 
 # movement stuff
 var speed: float = 100.0
-#this stuff just doesn't??? work???
+#this stuff just doesn't??? work??? idk just don't touchy
 var friction: float = 0.1
 var acceleration: float = 0.1
 var velocity: Vector2
 
-# pathing stuff
+export var max_health = 5
+var health = max_health
 
 class_name Enemy
 
 func _ready():
 	ray.cast_to.x = ray_position
 	attack_delay.connect("timeout", self, "start_attack")
+	health_bar.value = health
+	health_bar.max_value = max_health
+	attack_reciever.connect("body_entered", self, "damage")
 
 func _physics_process(delta: float):
+	health_bar.visible = (health < max_health)
 	var target = points[index]
 	if position.distance_to(target) < 1:
 		index = wrapi(index + 1, 0, points.size())
@@ -67,5 +77,15 @@ func start_attack():
 
 func attack_blocker(blocker):
 	if blocker is EnemyBlocker:
+		tween.interpolate_property(sprite, "offset", Vector2(0,0), ray.cast_to, 0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+		tween.interpolate_property(sprite, "offset", ray.cast_to, Vector2(0,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0.25)
+		tween.start()
 		blocker.damage(damage)
-		
+
+func damage(body):
+	if body is Fireball:
+		health -= body.damage
+		health_bar.value = health
+		if health <= 0:
+			queue_free()
+		body.queue_free()

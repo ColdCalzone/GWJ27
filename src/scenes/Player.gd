@@ -3,11 +3,21 @@ extends KinematicBody2D
 onready var camera = $Camera2D
 onready var ground = get_parent()
 
+onready var fireball = preload("res://src/scenes/Fireball.tscn")
+
 #movement variables
 var speed: float = 200.0
 var friction: float = 0.1
 var acceleration: float = 0.1
 var velocity: Vector2
+
+func _input(event):
+	if event.is_action_pressed("attack_fireball"):
+		var new_fireball = fireball.instance()
+		new_fireball.rotation = get_angle_to(get_global_mouse_position()) + self.get_rotation()
+		new_fireball.set_global_position(self.global_position)
+		new_fireball.direction = (get_global_mouse_position()- self.get_position()).normalized()
+		ground.add_child(new_fireball)
 
 func _process(delta: float) -> void:
 	var dir: Vector2 = Vector2(0, 0)

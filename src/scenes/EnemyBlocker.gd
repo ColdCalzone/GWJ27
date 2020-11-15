@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-export var health = 100
+export var max_health = 100
+var health = max_health
 
 onready var health_bar = $HealthBar
 
@@ -14,3 +15,6 @@ func damage(amount: int):
 	health_bar.value = health
 	if health <= 0:
 		queue_free()
+
+func _physics_process(delta):
+	health_bar.visible = (health < max_health)
