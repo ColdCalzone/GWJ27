@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var camera = $Camera2D
 onready var ground = get_parent()
-
 onready var fireball = preload("res://src/scenes/Fireball.tscn")
 
 #movement variables
