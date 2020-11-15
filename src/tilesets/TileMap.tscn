@@ -1,12 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/tilesets/tileset.tres" type="TileSet" id=1]
-
+[ext_resource path="res://src/tilesets/tilemap.gd" type="Script" id=2]
 
 [node name="Ground" type="TileMap"]
 tile_set = ExtResource( 1 )
 collision_mask = 0
 format = 1
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
