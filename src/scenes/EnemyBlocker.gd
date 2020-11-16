@@ -9,6 +9,7 @@ class_name EnemyBlocker
 
 func _ready():
 	health_bar.value = health
+	health_bar.max_value = max_health
 
 func damage(amount: int):
 	health -= amount

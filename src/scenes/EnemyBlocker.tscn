@@ -4,7 +4,7 @@
 [ext_resource path="res://src/scenes/EnemyBlocker.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30.3364, 30.8363 )
+extents = Vector2( 32, 32 )
 
 [node name="EnemyBlocker" type="StaticBody2D"]
 z_index = 1

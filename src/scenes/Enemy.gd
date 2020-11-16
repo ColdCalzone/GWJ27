@@ -16,18 +16,19 @@ var points
 var index = 0
 
 # movement stuff
-var speed: float = 100.0
+export var speed: float = 100.0
 #this stuff just doesn't??? work??? idk just don't touchy
 var friction: float = 0.1
 var acceleration: float = 0.1
 var velocity: Vector2
 
-export var max_health = 5
-var health = max_health
+export var max_health: int = 5
+var health: int = max_health
 
 class_name Enemy
 
 func _ready():
+	health = max_health
 	ray.cast_to.x = ray_position
 	attack_delay.connect("timeout", self, "start_attack")
 	health_bar.value = health
@@ -83,7 +84,7 @@ func attack_blocker(blocker):
 		blocker.damage(damage)
 
 func damage(body):
-	if body is Fireball:
+	if body is PlayerAttack:
 		health -= body.damage
 		health_bar.value = health
 		if health <= 0:

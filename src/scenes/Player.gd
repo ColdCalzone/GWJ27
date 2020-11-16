@@ -6,8 +6,8 @@ onready var fireball = preload("res://src/scenes/Fireball.tscn")
 
 #movement variables
 var speed: float = 200.0
-var friction: float = 0.1
-var acceleration: float = 0.1
+var friction: float = 1.0
+var acceleration: float = 1.0
 var velocity: Vector2
 
 func _input(event):
