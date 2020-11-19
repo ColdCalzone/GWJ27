@@ -3,7 +3,7 @@
 [ext_resource path="res://sprites/enemies/enemies_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/Enemy.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "walk"
 loop = true
 step = 0.9
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "walk_down"
 loop = true
 step = 0.9
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "walk_left"
 loop = true
 step = 0.9
@@ -54,7 +54,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=4]
 resource_name = "walk_right"
 loop = true
 step = 0.9
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=5]
 resource_name = "walk_up"
 loop = true
 step = 0.9
@@ -88,24 +88,29 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 10, 8 )
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 32, 32 )
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 14 )
 
 [node name="SlimeOrange" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 2 )
+ray_position = -25
+damage = 5
+speed = 120.0
+acceleration = 0.5
+max_health = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
-anims/walk = SubResource( 7 )
-anims/walk_down = SubResource( 8 )
-anims/walk_left = SubResource( 9 )
-anims/walk_right = SubResource( 10 )
-anims/walk_up = SubResource( 11 )
+anims/walk = SubResource( 1 )
+anims/walk_down = SubResource( 2 )
+anims/walk_left = SubResource( 3 )
+anims/walk_right = SubResource( 4 )
+anims/walk_up = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.140305, -10.9489 )
@@ -118,9 +123,10 @@ frame = 3
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -8 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="BlockerCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 collision_mask = 4
@@ -146,5 +152,5 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="AreaCollision" type="CollisionShape2D" parent="AttackReciever"]
-visible = false
-shape = SubResource( 6 )
+position = Vector2( 0, -8 )
+shape = SubResource( 7 )

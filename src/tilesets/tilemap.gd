@@ -22,6 +22,7 @@ func _ready():
 	# math makes you lose control
 	garbage_area.position = map_to_world(Vector2(map_size.x + smallest_position.x, map_size.y + smallest_position.y) / 2)
 	garbage_area_shape.shape.extents = ((map_size - smallest_position) / 2) * 64
+	garbage_area_shape.visible = false
 	
 func get_map_size() -> Vector2: 
 	var result : Vector2 = Vector2.ZERO

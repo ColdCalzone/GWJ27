@@ -15,7 +15,7 @@ __meta__ = {
 }
 wait_time = 0.05
 quote_right = "Never gonna give you up, never gonna let you down!"
-quote_left = "Never gonna run around and desert you!"
+quote_left = "Never gonna run around and desert you! [end]"
 
 [node name="Visibility" type="ColorRect" parent="."]
 margin_right = 640.0
@@ -25,7 +25,7 @@ __meta__ = {
 }
 
 [node name="TextboxBackground" type="ColorRect" parent="."]
-margin_top = 333.0
+margin_top = 332.0
 margin_right = 640.0
 margin_bottom = 512.0
 color = Color( 0, 0, 0, 0.788235 )
