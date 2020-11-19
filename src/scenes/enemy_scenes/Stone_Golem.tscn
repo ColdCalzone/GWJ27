@@ -3,7 +3,7 @@
 [ext_resource path="res://sprites/enemies/enemies_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/Enemy.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "walk_down"
 loop = true
 tracks/0/type = "value"
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ 17, 18 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "walk_left"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "values": [ 41, 42 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "walk_right"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -49,7 +49,7 @@ tracks/0/keys = {
 "values": [ 33, 34 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "walk_up"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -64,26 +64,29 @@ tracks/0/keys = {
 "values": [ 25, 26 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22, 22 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 24, 24 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="StoneGolem" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 2 )
+damage = 10
+speed = 33.0
+max_health = 50
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
-anims/walk_down = SubResource( 3 )
-anims/walk_left = SubResource( 4 )
-anims/walk_right = SubResource( 5 )
-anims/walk_up = SubResource( 6 )
+anims/walk_down = SubResource( 1 )
+anims/walk_left = SubResource( 2 )
+anims/walk_right = SubResource( 3 )
+anims/walk_up = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -22 )
 scale = Vector2( 1.375, 1.375 )
 z_index = 5
 texture = ExtResource( 1 )
@@ -92,14 +95,17 @@ hframes = 8
 frame = 41
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( 0, -16 )
+shape = SubResource( 5 )
 
 [node name="BlockerCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -8 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 collision_mask = 4
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
@@ -120,5 +126,5 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="AreaCollision" type="CollisionShape2D" parent="AttackReciever"]
-visible = false
-shape = SubResource( 2 )
+position = Vector2( 0, -16 )
+shape = SubResource( 6 )
