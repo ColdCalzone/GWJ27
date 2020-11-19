@@ -44,17 +44,7 @@ func next_char(quote, box, text):
 		last_side = box
 		yield(tween, "tween_all_completed")
 		timer.start()
-		return
 	else:
-		if text.text.find("[end]", text.visible_characters) == text.visible_characters:
-			timer.disconnect("timeout", self, "next_char")
-			tween.interpolate_property(self, "rect_position", self.rect_position, self.rect_position + Vector2(0, 190), 0.5, Tween.TRANS_QUAD, Tween.EASE_IN, 1.0)
-			tween.start()
-			yield(tween, "tween_all_completed")
-			timer.stop()
-			text.visible_characters = 0
-			timer.connect("timeout", self, "next_char", [quote_left, target_side, target_text])
-			return
 		text.visible_characters += 1
 		if quote.length() >= text.visible_characters:
 			blip.play()
@@ -66,4 +56,3 @@ func next_char(quote, box, text):
 			# this shouldn't be necessary imo
 			timer.disconnect("timeout", self, "next_char")
 			timer.connect("timeout", self, "next_char", [quote_left, target_side, target_text])
-			return

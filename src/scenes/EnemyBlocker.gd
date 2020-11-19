@@ -8,15 +8,11 @@ onready var health_bar = $HealthBar
 class_name EnemyBlocker
 
 func _ready():
-	health = max_health
 	health_bar.value = health
 	health_bar.max_value = max_health
 
 func damage(amount: int):
-	#print("owie ", amount)
-	#print(health)
 	health -= amount
-	#print(health)
 	health_bar.value = health
 	if health <= 0:
 		queue_free()
