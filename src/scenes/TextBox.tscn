@@ -102,4 +102,3 @@ expand = true
 
 [node name="blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -15.0
