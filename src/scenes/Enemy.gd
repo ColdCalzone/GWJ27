@@ -10,6 +10,9 @@ onready var spawner = get_parent()
 onready var health_bar = $HealthBar
 onready var path = get_tree().get_root().get_node("Ground/EnemyPath")
 
+#temporary animationPlayer variable for testing animations and spritesheets
+onready var anim = $AnimationPlayer
+
 export var ray_position: int = -50
 export var damage: int = 1
 var points
@@ -41,6 +44,21 @@ func _ready():
 	attack_reciever.connect("body_entered", self, "damage")
 
 func _physics_process(delta: float):
+	
+	#temporary animation test
+	
+	if velocity.x > 0.3:
+		anim.play("walk_right")
+	elif velocity.x < -0.3:
+		anim.play("walk_left")
+	elif velocity.y > 0.3:
+		anim.play("walk_down")
+	elif velocity.y < -0.3:
+		anim.play("walk_up")
+	
+	
+	
+	
 	health_bar.visible = (health < max_health)
 	var target = points[index]
 	if position.distance_to(target) < 1:

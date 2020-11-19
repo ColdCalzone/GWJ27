@@ -1,11 +1,29 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites/enemies/enemies_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/Enemy.gd" type="Script" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
+resource_name = "walk"
+loop = true
+step = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=8]
 resource_name = "walk_down"
 loop = true
+step = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -13,14 +31,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 17, 18 ]
+"values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=9]
 resource_name = "walk_left"
+loop = true
+step = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -28,14 +48,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 41, 42 ]
+"values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=10]
 resource_name = "walk_right"
+loop = true
+step = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -43,14 +65,16 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 33, 34 ]
+"values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=11]
 resource_name = "walk_up"
+loop = true
+step = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -58,41 +82,43 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 25, 26 ]
+"values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 22, 22 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 8 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 32, 32 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="SlimeOrange" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.5
-anims/walk_down = SubResource( 3 )
-anims/walk_left = SubResource( 4 )
-anims/walk_right = SubResource( 5 )
-anims/walk_up = SubResource( 6 )
+anims/walk = SubResource( 7 )
+anims/walk_down = SubResource( 8 )
+anims/walk_left = SubResource( 9 )
+anims/walk_right = SubResource( 10 )
+anims/walk_up = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 0.140305, -10.9489 )
 scale = Vector2( 1.375, 1.375 )
 z_index = 5
 texture = ExtResource( 1 )
-vframes = 6
-hframes = 8
-frame = 41
+vframes = 12
+hframes = 16
+frame = 3
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( 0, -8 )
+shape = SubResource( 5 )
 
 [node name="BlockerCheck" type="RayCast2D" parent="."]
 enabled = true
@@ -121,4 +147,4 @@ collision_mask = 8
 
 [node name="AreaCollision" type="CollisionShape2D" parent="AttackReciever"]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 6 )

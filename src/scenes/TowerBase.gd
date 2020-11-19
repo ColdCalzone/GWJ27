@@ -16,6 +16,9 @@ var attack_queue: Array = []
 class_name TowerBase
 
 func _ready():
+	
+	$icon.play("default")
+	
 	health_bar.value = health
 	health_bar.max_value = max_health
 	attack_timer.wait_time = attack_delay
