@@ -9,6 +9,17 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
+<<<<<<< HEAD
+=======
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+>>>>>>> parent of fdcc4f7... monke flip (character sprite and particles)
 [node name="Fireball" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 0
