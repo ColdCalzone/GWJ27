@@ -16,10 +16,15 @@ var points
 var index = 0
 
 # movement stuff
+# ok so like I tried to set this to 200 and it didn't work so I think this one's cursed folks
+# @ 135 it moves forward about a tile and just spazs out again
+# @ 134 it moves forward about 12 tiles and just spazs out again again
+# @ 133 it works
+# ????????????????????????????????????????????????????????????????????
 export var speed: float = 100.0
 #this stuff just doesn't??? work??? idk just don't touchy
-var friction: float = 0.1
-var acceleration: float = 0.1
+export var friction: float = 0.1
+export var acceleration: float = 1.0
 var velocity: Vector2
 
 export var max_health: int = 5
@@ -68,7 +73,8 @@ func _physics_process(delta: float):
 	velocity.y = lerp(velocity.y, 0, friction)
 	
 	if !is_instance_valid(ray.get_collider()):
-		move_and_slide(velocity * speed)
+		if (target - position).length() != 0:
+			move_and_slide(velocity*speed)
 	else:
 		if attack_delay.time_left <= 0:
 			attack_delay.start()

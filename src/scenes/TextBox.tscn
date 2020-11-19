@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/fonts/Fipps.tres" type="DynamicFont" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://src/scenes/TextBox.gd" type="Script" id=3]
+[ext_resource path="res://src/audio/text_pop.wav" type="AudioStream" id=4]
+
+[node name="Textbox" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 640, 512 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+wait_time = 0.05
+quote_right = "Never gonna give you up, never gonna let you down!"
+quote_left = "Never gonna run around and desert you!"
+
+[node name="Visibility" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextboxBackground" type="ColorRect" parent="."]
+margin_top = 333.0
+margin_right = 640.0
+margin_bottom = 512.0
+color = Color( 0, 0, 0, 0.788235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Textboxes" type="HBoxContainer" parent="."]
+margin_right = 1290.0
+margin_bottom = 180.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextboxLeft" type="HBoxContainer" parent="Textboxes"]
+margin_right = 643.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar" type="TextureRect" parent="Textboxes/TextboxLeft"]
+margin_right = 180.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 180, 180 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Text" type="RichTextLabel" parent="Textboxes/TextboxLeft"]
+margin_left = 184.0
+margin_right = 643.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 459, 180 )
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 1 )
+visible_characters = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextboxRight" type="HBoxContainer" parent="Textboxes"]
+margin_left = 643.0
+margin_right = 1286.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="Textboxes/TextboxRight"]
+margin_right = 459.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 459, 180 )
+rect_clip_content = false
+custom_fonts/normal_font = ExtResource( 1 )
+visible_characters = 0
+text = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+1234567890 !@#$%^&*() -=_+ []{}\\|;':\",./<>?~`"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar" type="TextureRect" parent="Textboxes/TextboxRight"]
+margin_left = 463.0
+margin_right = 643.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 180, 180 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="blip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

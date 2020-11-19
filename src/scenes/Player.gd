@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var camera = $Camera2D
+onready var textboxes = $UI/Textbox
 onready var ground = get_parent()
 onready var fireball = preload("res://src/scenes/Fireball.tscn")
 
@@ -18,7 +19,7 @@ func _input(event):
 		new_fireball.direction = (get_global_mouse_position()- self.get_position()).normalized()
 		ground.add_child(new_fireball)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var dir: Vector2 = Vector2(0, 0)
 	# Sets the friction, accel, and speed based on the current tile.
 	# Pretty dynamic, so if I ever decide I need something new
@@ -52,4 +53,4 @@ func _process(delta: float) -> void:
 	camera.position = (get_viewport().get_mouse_position() - OS.get_window_size()/2)/2
 
 func _ready():
-	pass
+	textboxes.visible = true

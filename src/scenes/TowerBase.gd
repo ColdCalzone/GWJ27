@@ -1,9 +1,5 @@
-extends StaticBody2D
+extends EnemyBlocker
 
-export var max_health: int = 100
-var health = max_health
-
-onready var health_bar = $HealthBar
 onready var attack_timer = $AttackTimer
 onready var attack_area = $AttackArea
 onready var attack_radius = $AttackArea/AreaRadius
@@ -23,10 +19,12 @@ func _ready():
 	health_bar.value = health
 	health_bar.max_value = max_health
 	attack_timer.wait_time = attack_delay
-	attack_radius.shape.radius = radius
+	attack_radius.shape.set_radius(radius)
 	attack_area.connect("body_entered", self, "add_to_attack_queue")
 	attack_area.connect("body_exited", self, "remove_from_attack_queue")
 	attack_timer.connect("timeout", self, "attack_first_target")
+	if ground.get_cellv(ground.world_to_map(position)) == 77:
+		set_collision_layer_bit(2, true)
 
 func damage(amount: int):
 	health -= amount
@@ -52,4 +50,5 @@ func attack_first_target():
 		new_attack.rotation = get_angle_to(attack_queue[0].global_position) + self.get_rotation()
 		new_attack.set_global_position(self.global_position)
 		new_attack.direction = (attack_queue[0].global_position- self.get_position()).normalized()
+		new_attack.damage = damage
 		ground.add_child(new_attack)

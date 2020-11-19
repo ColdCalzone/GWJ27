@@ -1,7 +1,7 @@
 extends StaticBody2D
 
-export var max_health = 100
-var health = max_health
+export var max_health: int = 100
+var health: int = max_health
 
 onready var health_bar = $HealthBar
 

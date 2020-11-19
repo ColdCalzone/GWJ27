@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "PlayerAttack",
 "language": "GDScript",
 "path": "res://src/scripts/PlayerAttack.gd"
+}, {
+"base": "Control",
+"class": "TextBox",
+"language": "GDScript",
+"path": "res://src/scenes/TextBox.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
 "EnemyBlocker": "",
 "Fireball": "",
-"PlayerAttack": ""
+"PlayerAttack": "",
+"TextBox": ""
 }
 
 [application]
@@ -95,6 +101,7 @@ attack_fireball={
 2d_physics/layer_3="Enemy Stoppers"
 2d_physics/layer_4="Attacks to Enemies"
 2d_physics/layer_5="Player"
+2d_physics/layer_6="Towers"
 
 [rendering]
 
