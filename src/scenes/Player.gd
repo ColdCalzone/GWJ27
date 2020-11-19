@@ -20,14 +20,6 @@ func _input(event):
 		ground.add_child(new_fireball)
 
 func _physics_process(delta: float) -> void:
-	
-	#animations handling
-	if velocity.x > 0.3 or velocity.x < -0.3 or velocity.y < -0.3 or velocity.y > 0.3:
-		$Sprite.play("run")
-	else:
-		$Sprite.play("idle")
-	
-	
 	var dir: Vector2 = Vector2(0, 0)
 	# Sets the friction, accel, and speed based on the current tile.
 	# Pretty dynamic, so if I ever decide I need something new
@@ -41,10 +33,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_down"):
 		dir += Vector2.DOWN
 	if Input.is_action_pressed("move_left"):
-		$Sprite.flip_h = false
 		dir += Vector2.LEFT
 	if Input.is_action_pressed("move_right"):
-		$Sprite.flip_h = true
 		dir += Vector2.RIGHT
 	if dir.length() != 0:
 		# Used for ice physics, decreasing acceleration when on an ice tile

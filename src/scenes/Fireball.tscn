@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/projectiles/fireball_proj2.png" type="Texture" id=1]
 [ext_resource path="res://src/scenes/Fireball.gd" type="Script" id=2]
 [ext_resource path="res://sprites/projectiles/fireball_proj1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -14,13 +13,6 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 } ]
-
-[sub_resource type="Curve" id=4]
-max_value = 100.0
-_data = [ Vector2( 0, 100 ), 0.0, 0.0, 0, 0, Vector2( 0.264368, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 1, 0, 0, 1, 1, 0.820313, 0, 1 )
 
 [node name="Fireball" type="KinematicBody2D"]
 collision_layer = 8
@@ -31,21 +23,8 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -4.76837e-07, -4.76837e-07 )
-scale = Vector2( 4, 4 )
+position = Vector2( 4.76837e-07, 4.76837e-07 )
+scale = Vector2( 2.5, 2.5 )
 frames = SubResource( 2 )
 frame = 1
 playing = true
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-amount = 64
-lifetime = 0.2
-local_coords = false
-emission_shape = 1
-emission_sphere_radius = 10.0
-gravity = Vector2( 0, 0 )
-damping = 2.0
-damping_random = 0.16
-damping_curve = SubResource( 4 )
-scale_amount = 5.0
-color_ramp = SubResource( 3 )
